@@ -9,9 +9,16 @@ import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.google.gson.Gson;
 import com.srgtrujillo.quotes.R;
+import com.srgtrujillo.quotes.quote.data.QuoteRepository;
+import com.srgtrujillo.quotes.quote.domain.interactor.GetQuotesUseCase;
 import com.srgtrujillo.quotes.quote.domain.model.Quote;
+import com.srgtrujillo.quotes.quote.presenter.QuoteListPresenter;
 import com.srgtrujillo.quotes.quote.view.QuoteListView;
+import okhttp3.OkHttpClient;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import java.util.List;
 
@@ -25,12 +32,20 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
     TextView informationTextView;
 
     private QuoteAdapter adapter;
+    private QuoteListPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        QuoteRepository repository = new QuoteRepository(new Gson(), new OkHttpClient());
+        GetQuotesUseCase useCase = new GetQuotesUseCase(repository,
+                AndroidSchedulers.mainThread(),
+                Schedulers.newThread());
+        presenter = new QuoteListPresenter(useCase);
+        presenter.init();
     }
 
     @Override
