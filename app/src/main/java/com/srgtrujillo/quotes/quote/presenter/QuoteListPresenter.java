@@ -1,17 +1,20 @@
 package com.srgtrujillo.quotes.quote.presenter;
 
+import android.util.Log;
 import com.srgtrujillo.quotes.base.MVP;
 import com.srgtrujillo.quotes.quote.domain.interactor.GetQuotesUseCase;
 import com.srgtrujillo.quotes.quote.domain.model.Quote;
 import com.srgtrujillo.quotes.quote.view.QuoteListView;
+import rx.Subscription;
+import rx.functions.Action1;
 
 import java.net.UnknownHostException;
 import java.util.List;
 
-import rx.Subscription;
-import rx.functions.Action1;
 
 public class QuoteListPresenter implements MVP.Presenter<QuoteListView> {
+
+    private final String TAG = QuoteListPresenter.class.getSimpleName();
 
     private GetQuotesUseCase useCase;
     private QuoteListView view;
@@ -54,7 +57,14 @@ public class QuoteListPresenter implements MVP.Presenter<QuoteListView> {
     }
 
     private void onQuotesReceived(List<Quote> quotes) {
-        view.show(quotes);
+        Log.i(TAG, "onQuotesReceived: " + quotes.toString());
+
+        if (quotes.isEmpty()) {
+            view.showEmptyCase();
+        } else {
+            view.show(quotes);
+        }
+
         view.hideProgressBar();
     }
 
@@ -65,5 +75,6 @@ public class QuoteListPresenter implements MVP.Presenter<QuoteListView> {
             view.showError();
         }
         view.hideProgressBar();
+        Log.e(TAG, "onError: ", error);
     }
 }

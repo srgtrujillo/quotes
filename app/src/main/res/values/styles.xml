@@ -9,9 +9,10 @@
     </style>
 
 
-    <style name="QuoteText" parent="TextAppearance.AppCompat.Display1">
+    <style name="QuoteText" parent="TextAppearance.AppCompat.Title">
         <item name="android:gravity">center</item>
         <item name="fontPath">fonts/Roboto-Thin.ttf</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="AuthorText" parent="TextAppearance.AppCompat.Title">

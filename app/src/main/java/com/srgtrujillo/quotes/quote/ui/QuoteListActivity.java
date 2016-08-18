@@ -10,7 +10,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.srgtrujillo.quotes.R;
+import com.srgtrujillo.quotes.base.di.QuoteInjection;
 import com.srgtrujillo.quotes.quote.domain.model.Quote;
+import com.srgtrujillo.quotes.quote.presenter.QuoteListPresenter;
 import com.srgtrujillo.quotes.quote.view.QuoteListView;
 
 import java.util.List;
@@ -25,32 +27,47 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
     TextView informationTextView;
 
     private QuoteAdapter adapter;
+    private QuoteListPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+//        QuoteRepository repository = new QuoteRepository(new Gson(), new OkHttpClient());
+//        GetQuotesUseCase useCase = new GetQuotesUseCase(repository,
+//                AndroidSchedulers.mainThread(),
+//                Schedulers.newThread());
+//        presenter = new QuoteListPresenter(useCase);
+
+        presenter = QuoteInjection.injectQuoteListPresent();
+        presenter.setView(this);
+        presenter.init();
     }
 
     @Override
     public void show(List<Quote> quoteList) {
         adapter.addAll(quoteList);
+        informationTextView.setVisibility(View.GONE);
     }
 
     @Override
     public void showEmptyCase() {
         informationTextView.setText(R.string.empty_quotes);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showNetworkError() {
         informationTextView.setText(R.string.connection_error);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showError() {
         informationTextView.setText(R.string.quotes_error);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -61,6 +78,7 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
     @Override
     public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
+        informationTextView.setVisibility(View.GONE);
     }
 
     @Override

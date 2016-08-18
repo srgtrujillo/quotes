@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import com.srgtrujillo.quotes.R;
 import com.srgtrujillo.quotes.quote.domain.model.Quote;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder> {
@@ -58,7 +59,18 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
     }
 
     public void addAll(List<Quote> quoteList) {
-        quoteList.addAll(quoteList);
+        this.quoteList.addAll(quoteList);
+        notifyDataSetChanged();
+    }
+
+    public List<Quote> getItems() {
+        List<Quote> quotes = new ArrayList<>();
+
+        for (int i = 0, size = quoteList.size(); i < size; i++) {
+            quotes.add(quoteList.get(i));
+        }
+
+        return quotes;
     }
 
     class QuoteViewHolder extends RecyclerView.ViewHolder {
@@ -71,17 +83,17 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         TextView quoteTextView;
         @BindView(R.id.author)
         TextView authorTextView;
-        @BindView(R.id.quote_text)
+        @BindView(R.id.likes_count)
         TextView likeCountTextView;
 
 
         QuoteViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void render(Quote quote) {
-            quoteTextView.setText("\"" + quote.getText() + ".\"");
+            quoteTextView.setText("\"" + quote.getQuote() + ".\"");
             authorTextView.setText("- " + quote.getAuthor());
             renderImage(quote);
             renderLike(quote.getLikes());
@@ -90,14 +102,13 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         private void renderImage(Quote quote) {
             Picasso.with(image.getContext())
                     .load(quote.getImageUrl())
-                    .fit()
                     .into(image);
         }
 
         private void renderLike(List<String> likes) {
             if (!likes.isEmpty()){
                 likeImage.setImageResource(R.drawable.ic_like_fill);
-                likeCountTextView.setText(likes.size());
+                likeCountTextView.setText(likes.size()+"");
             }
         }
     }
