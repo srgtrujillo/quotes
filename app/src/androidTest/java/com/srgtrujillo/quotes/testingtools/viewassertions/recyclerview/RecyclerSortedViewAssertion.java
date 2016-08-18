@@ -12,7 +12,6 @@ import org.hamcrest.StringDescription;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class RecyclerSortedViewAssertion<T extends Comparable> implements ViewAssertion {
@@ -21,7 +20,6 @@ public class RecyclerSortedViewAssertion<T extends Comparable> implements ViewAs
     private WithAdapter<T> withAdapter;
 
     public RecyclerSortedViewAssertion(WithAdapter<T> withAdapter) {
-        checkNotNull(withAdapter);
         this.withAdapter = withAdapter;
     }
 

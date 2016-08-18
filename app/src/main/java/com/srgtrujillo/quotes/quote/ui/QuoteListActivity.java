@@ -49,21 +49,25 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
     @Override
     public void show(List<Quote> quoteList) {
         adapter.addAll(quoteList);
+        informationTextView.setVisibility(View.GONE);
     }
 
     @Override
     public void showEmptyCase() {
         informationTextView.setText(R.string.empty_quotes);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showNetworkError() {
         informationTextView.setText(R.string.connection_error);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showError() {
         informationTextView.setText(R.string.quotes_error);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -74,6 +78,7 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
     @Override
     public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
+        informationTextView.setVisibility(View.GONE);
     }
 
     @Override

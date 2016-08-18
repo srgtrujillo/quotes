@@ -57,8 +57,14 @@ public class QuoteListPresenter implements MVP.Presenter<QuoteListView> {
     }
 
     private void onQuotesReceived(List<Quote> quotes) {
-        Log.i(TAG, "onQuotesReceived: "+quotes.toString());
-        view.show(quotes);
+        Log.i(TAG, "onQuotesReceived: " + quotes.toString());
+
+        if (quotes.isEmpty()) {
+            view.showEmptyCase();
+        } else {
+            view.show(quotes);
+        }
+
         view.hideProgressBar();
     }
 

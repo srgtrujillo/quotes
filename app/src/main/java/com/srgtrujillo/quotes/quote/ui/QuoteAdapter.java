@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import com.srgtrujillo.quotes.R;
 import com.srgtrujillo.quotes.quote.domain.model.Quote;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder> {
@@ -60,6 +61,16 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
     public void addAll(List<Quote> quoteList) {
         this.quoteList.addAll(quoteList);
         notifyDataSetChanged();
+    }
+
+    public List<Quote> getItems() {
+        List<Quote> quotes = new ArrayList<>();
+
+        for (int i = 0, size = quoteList.size(); i < size; i++) {
+            quotes.add(quoteList.get(i));
+        }
+
+        return quotes;
     }
 
     class QuoteViewHolder extends RecyclerView.ViewHolder {
