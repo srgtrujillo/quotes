@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="QuoteText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:gravity">center</item>
+        <item name="fontPath">fonts/Roboto-Thin.ttf</item>
+    </style>
+
 </resources>
