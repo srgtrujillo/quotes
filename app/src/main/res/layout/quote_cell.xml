@@ -6,7 +6,7 @@
               android:layout_height="wrap_content">
 
     <ImageView
-            android:id="@+id/image"
+            android:id="@+id/quote_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:background="@color/colorAccent"/>
