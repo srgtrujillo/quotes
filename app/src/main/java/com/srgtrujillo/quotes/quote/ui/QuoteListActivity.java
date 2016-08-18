@@ -5,6 +5,7 @@ import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +35,7 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
 
     @Override
     public void show(List<Quote> quoteList) {
-
+        adapter.addAll(quoteList);
     }
 
     @Override
@@ -54,12 +55,12 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void showProgressBar() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override

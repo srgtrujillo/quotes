@@ -57,6 +57,10 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         return quoteList.size();
     }
 
+    public void addAll(List<Quote> quoteList) {
+        quoteList.addAll(quoteList);
+    }
+
     class QuoteViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.quote_image)
