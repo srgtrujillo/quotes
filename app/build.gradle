@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 configurations.all {
@@ -57,4 +60,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.2'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    compile 'com.jakewharton:butterknife:8.2.1'
+    provided 'com.jakewharton:butterknife-compiler:8.2.1'
 }

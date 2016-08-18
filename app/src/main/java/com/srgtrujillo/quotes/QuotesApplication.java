@@ -1,6 +1,7 @@
 package com.srgtrujillo.quotes;
 
 import android.app.Application;
+import com.srgtrujillo.quotes.base.di.QuoteInjection;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class QuotesApplication extends Application {
@@ -9,6 +10,8 @@ public class QuotesApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initCalligraphy();
+
+        QuoteInjection.load(new QuoteInjection());
     }
 
     private void initCalligraphy() {
