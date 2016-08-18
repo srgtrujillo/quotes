@@ -11,4 +11,6 @@ public interface QuoteListView extends MVP.View {
     void showEmptyCase();
     void showNetworkError();
     void showError();
+    void hideProgressBar();
+    void showProgressBar();
 }

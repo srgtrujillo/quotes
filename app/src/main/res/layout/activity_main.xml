@@ -22,4 +22,12 @@
             android:layout_centerInParent="true"
     />
 
+    <TextView
+            android:id="@+id/information_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
 </RelativeLayout>
