@@ -17,7 +17,8 @@
                 android:layout_width="@dimen/avatar"
                 android:layout_height="@dimen/avatar"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                tools:background="@color/colorAccent"/>
 
         <TextView
                 android:id="@+id/user_name"
