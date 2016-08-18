@@ -14,7 +14,7 @@ public class QuoteListActivityTest {
 
     @Rule
     public ActivityTestRule<QuoteListActivity> activityTestRule =
-            new ActivityTestRule<>(QuoteListActivity.class, true, false);
+            new ActivityTestRule<>(QuoteListActivity.class);
 
     @Test
     public void

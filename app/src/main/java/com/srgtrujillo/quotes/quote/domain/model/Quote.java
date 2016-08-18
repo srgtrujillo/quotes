@@ -8,20 +8,20 @@ public class Quote implements Comparable<Quote> {
 
     private String id;
     private String author;
-    private String text;
+    private String quote;
     private String imageUrl;
     private List<String> likes;
     private long timestamp;
 
     public Quote(String id,
                  String author,
-                 String text,
+                 String quote,
                  String imageUrl,
                  List<String> likes,
                  long timestamp) {
         this.id = id;
         this.author = author;
-        this.text = text;
+        this.quote = quote;
         this.imageUrl = imageUrl;
         this.likes = likes;
         this.timestamp = timestamp;
@@ -35,8 +35,8 @@ public class Quote implements Comparable<Quote> {
         return author;
     }
 
-    public String getText() {
-        return text;
+    public String getQuote() {
+        return quote;
     }
 
     public String getImageUrl() {
@@ -60,7 +60,7 @@ public class Quote implements Comparable<Quote> {
 
         if (timestamp != quote.timestamp) return false;
         if (!author.equals(quote.author)) return false;
-        if (!text.equals(quote.text)) return false;
+        if (!this.quote.equals(quote.quote)) return false;
         if (!imageUrl.equals(quote.imageUrl)) return false;
         return likes != null ? likes.equals(quote.likes) : quote.likes == null;
 
@@ -69,7 +69,7 @@ public class Quote implements Comparable<Quote> {
     @Override
     public int hashCode() {
         int result = author.hashCode();
-        result = 31 * result + text.hashCode();
+        result = 31 * result + quote.hashCode();
         result = 31 * result + imageUrl.hashCode();
         result = 31 * result + (likes != null ? likes.hashCode() : 0);
         result = 31 * result + (int) (timestamp ^ (timestamp >>> 32));
@@ -87,5 +87,17 @@ public class Quote implements Comparable<Quote> {
         }
 
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Quote{" +
+                "id='" + id + '\'' +
+                ", author='" + author + '\'' +
+                ", text='" + quote + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", likes=" + likes +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }

@@ -45,6 +45,7 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListVie
                 AndroidSchedulers.mainThread(),
                 Schedulers.newThread());
         presenter = new QuoteListPresenter(useCase);
+        presenter.setView(this);
         presenter.init();
     }
 
