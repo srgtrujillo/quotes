@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Quotes</string>
+    <string name="empty_quotes">There are not Quotes :(</string>
+    <string name="connection_error">There are not connection</string>
+    <string name="quotes_error">Oops error on get Quotes :(</string>
+</resources>
