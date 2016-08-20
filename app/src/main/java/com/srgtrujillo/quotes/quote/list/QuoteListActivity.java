@@ -5,13 +5,14 @@ import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.srgtrujillo.quotes.R;
 import com.srgtrujillo.quotes.base.di.QuoteInjection;
-import com.srgtrujillo.quotes.quote.model.Quote;
 import com.srgtrujillo.quotes.quote.list.adapter.QuoteAdapter;
+import com.srgtrujillo.quotes.quote.model.Quote;
 
 import java.util.List;
 
@@ -47,36 +48,36 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListPre
     @Override
     public void show(List<Quote> quoteList) {
         adapter.addAll(quoteList);
-        informationTextView.setVisibility(android.view.View.GONE);
+        informationTextView.setVisibility(View.GONE);
     }
 
     @Override
     public void showEmptyCase() {
         informationTextView.setText(R.string.empty_quotes);
-        informationTextView.setVisibility(android.view.View.VISIBLE);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showNetworkError() {
         informationTextView.setText(R.string.connection_error);
-        informationTextView.setVisibility(android.view.View.VISIBLE);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showError() {
         informationTextView.setText(R.string.quotes_error);
-        informationTextView.setVisibility(android.view.View.VISIBLE);
+        informationTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(android.view.View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void showProgressBar() {
-        progressBar.setVisibility(android.view.View.VISIBLE);
-        informationTextView.setVisibility(android.view.View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        informationTextView.setVisibility(View.GONE);
     }
 
     @Override
