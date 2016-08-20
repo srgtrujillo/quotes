@@ -1,4 +1,4 @@
-package com.srgtrujillo.quotes.quote.domain.model;
+package com.srgtrujillo.quotes.user;
 
 public class User {
 

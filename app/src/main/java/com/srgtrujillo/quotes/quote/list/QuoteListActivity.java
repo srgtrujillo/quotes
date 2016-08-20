@@ -1,4 +1,4 @@
-package com.srgtrujillo.quotes.quote.ui;
+package com.srgtrujillo.quotes.quote.list;
 
 import android.os.Bundle;
 import android.support.v4.widget.ContentLoadingProgressBar;
@@ -11,13 +11,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.srgtrujillo.quotes.R;
 import com.srgtrujillo.quotes.base.di.QuoteInjection;
-import com.srgtrujillo.quotes.quote.domain.model.Quote;
-import com.srgtrujillo.quotes.quote.presenter.QuoteListPresenter;
-import com.srgtrujillo.quotes.quote.view.QuoteListView;
+import com.srgtrujillo.quotes.quote.list.adapter.QuoteAdapter;
+import com.srgtrujillo.quotes.quote.model.Quote;
 
 import java.util.List;
 
-public class QuoteListActivity extends AppCompatActivity implements QuoteListView {
+public class QuoteListActivity extends AppCompatActivity implements QuoteListPresenter.View {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
