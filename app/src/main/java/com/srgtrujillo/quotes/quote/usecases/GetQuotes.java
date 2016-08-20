@@ -1,6 +1,6 @@
 package com.srgtrujillo.quotes.quote.usecases;
 
-import com.srgtrujillo.quotes.base.interactor.UseCase;
+import com.srgtrujillo.quotes.base.usecases.UseCase;
 import com.srgtrujillo.quotes.quote.data.QuoteRepository;
 import com.srgtrujillo.quotes.quote.model.Quote;
 import rx.Observable;
