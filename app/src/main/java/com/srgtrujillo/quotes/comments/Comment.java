@@ -1,4 +1,6 @@
-package com.srgtrujillo.quotes.quote.domain.model;
+package com.srgtrujillo.quotes.comments;
+
+import com.srgtrujillo.quotes.user.User;
 
 import java.util.List;
 

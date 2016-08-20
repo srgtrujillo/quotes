@@ -1,4 +1,4 @@
-package com.srgtrujillo.quotes.quote.domain.model;
+package com.srgtrujillo.quotes.quote.model;
 
 import android.support.annotation.NonNull;
 

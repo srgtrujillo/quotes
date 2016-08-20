@@ -1,10 +1,9 @@
-package com.srgtrujillo.quotes.quote.presenter;
+package com.srgtrujillo.quotes.quote.list;
 
 import android.util.Log;
 import com.srgtrujillo.quotes.base.MVP;
-import com.srgtrujillo.quotes.quote.domain.interactor.GetQuotesUseCase;
-import com.srgtrujillo.quotes.quote.domain.model.Quote;
-import com.srgtrujillo.quotes.quote.view.QuoteListView;
+import com.srgtrujillo.quotes.quote.usecases.GetQuotes;
+import com.srgtrujillo.quotes.quote.model.Quote;
 import rx.Subscription;
 import rx.functions.Action1;
 
@@ -12,16 +11,27 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 
-public class QuoteListPresenter implements MVP.Presenter<QuoteListView> {
+public class QuoteListPresenter implements MVP.Presenter<QuoteListPresenter.View> {
+
+    interface View extends MVP.View {
+
+        void show(List<Quote> quoteList);
+        void showEmptyCase();
+        void showNetworkError();
+        void showError();
+        void hideProgressBar();
+        void showProgressBar();
+    }
+
 
     private final String TAG = QuoteListPresenter.class.getSimpleName();
 
-    private GetQuotesUseCase useCase;
-    private QuoteListView view;
+    private GetQuotes useCase;
+    private View view;
 
     private Subscription quotesSubscription;
 
-    public QuoteListPresenter(GetQuotesUseCase useCase) {
+    public QuoteListPresenter(GetQuotes useCase) {
         this.useCase = useCase;
     }
 
@@ -33,7 +43,7 @@ public class QuoteListPresenter implements MVP.Presenter<QuoteListView> {
     }
 
     @Override
-    public void setView(QuoteListView view) {
+    public void setView(View view) {
         this.view = view;
     }
 

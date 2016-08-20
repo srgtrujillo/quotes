@@ -1,4 +1,4 @@
-package com.srgtrujillo.quotes.quote.ui;
+package com.srgtrujillo.quotes.quote.list.adapter;
 
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
 import com.srgtrujillo.quotes.R;
-import com.srgtrujillo.quotes.quote.domain.model.Quote;
+import com.srgtrujillo.quotes.quote.model.Quote;
 
 import java.util.ArrayList;
 import java.util.List;
