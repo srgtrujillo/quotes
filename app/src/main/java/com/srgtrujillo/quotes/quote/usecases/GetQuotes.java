@@ -1,17 +1,18 @@
-package com.srgtrujillo.quotes.quote.domain.interactor;
+package com.srgtrujillo.quotes.quote.usecases;
 
-import com.srgtrujillo.quotes.base.interactor.UseCase;
+import com.srgtrujillo.quotes.base.usecases.UseCase;
 import com.srgtrujillo.quotes.quote.data.QuoteRepository;
-import com.srgtrujillo.quotes.quote.domain.model.Quote;
+import com.srgtrujillo.quotes.quote.model.Quote;
 import rx.Observable;
 import rx.Scheduler;
 
 import java.util.List;
 
-public class GetQuotesUseCase extends UseCase<List<Quote>> {
+public class GetQuotes extends UseCase<List<Quote>> {
+
     private QuoteRepository repository;
 
-    public GetQuotesUseCase(QuoteRepository repository, Scheduler uiThread, Scheduler executorThread) {
+    public GetQuotes(QuoteRepository repository, Scheduler uiThread, Scheduler executorThread) {
         super(uiThread, executorThread);
         this.repository = repository;
     }

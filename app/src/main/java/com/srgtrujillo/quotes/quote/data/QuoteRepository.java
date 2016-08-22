@@ -2,7 +2,7 @@ package com.srgtrujillo.quotes.quote.data;
 
 import android.util.Log;
 import com.google.gson.Gson;
-import com.srgtrujillo.quotes.quote.domain.model.Quote;
+import com.srgtrujillo.quotes.quote.model.Quote;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

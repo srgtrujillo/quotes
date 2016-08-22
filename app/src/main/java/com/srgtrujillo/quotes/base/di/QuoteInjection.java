@@ -2,8 +2,8 @@ package com.srgtrujillo.quotes.base.di;
 
 import com.google.gson.Gson;
 import com.srgtrujillo.quotes.quote.data.QuoteRepository;
-import com.srgtrujillo.quotes.quote.domain.interactor.GetQuotesUseCase;
-import com.srgtrujillo.quotes.quote.presenter.QuoteListPresenter;
+import com.srgtrujillo.quotes.quote.usecases.GetQuotes;
+import com.srgtrujillo.quotes.quote.list.QuoteListPresenter;
 import okhttp3.OkHttpClient;
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
@@ -14,7 +14,7 @@ public class QuoteInjection {
     private static QuoteInjection injector;
 
     private QuoteListPresenter quoteListPresenter;
-    private GetQuotesUseCase getQuotesUseCase;
+    private GetQuotes getQuotes;
     private QuoteRepository quoteRepository;
     private Scheduler executorThread;
     private Scheduler uiThread;
@@ -28,12 +28,12 @@ public class QuoteInjection {
         return quoteListPresenter;
     }
 
-    public GetQuotesUseCase getQuotesUseCase() {
-        if (getQuotesUseCase == null) {
-            return new GetQuotesUseCase(quoteRepository(), uiThread(), executorThread());
+    public GetQuotes getQuotesUseCase() {
+        if (getQuotes == null) {
+            return new GetQuotes(quoteRepository(), uiThread(), executorThread());
         }
 
-        return getQuotesUseCase;
+        return getQuotes;
     }
 
     private Scheduler executorThread() {
@@ -77,12 +77,12 @@ public class QuoteInjection {
         this.quoteRepository = quoteRepository;
     }
 
-    public static void config(GetQuotesUseCase getQuotesUseCase) {
-        injector.configService(getQuotesUseCase);
+    public static void config(GetQuotes getQuotes) {
+        injector.configService(getQuotes);
     }
 
-    private void configService(GetQuotesUseCase getQuotesUseCase) {
-        this.getQuotesUseCase = getQuotesUseCase;
+    private void configService(GetQuotes getQuotes) {
+        this.getQuotes = getQuotes;
     }
 
     public static void configExecutor(Scheduler executorThread) {

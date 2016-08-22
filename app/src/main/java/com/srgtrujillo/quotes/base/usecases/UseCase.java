@@ -1,4 +1,4 @@
-package com.srgtrujillo.quotes.base.interactor;
+package com.srgtrujillo.quotes.base.usecases;
 
 import rx.Observable;
 import rx.Scheduler;
