@@ -1,5 +1,9 @@
 package com.srgtrujillo.quotes.quote.list.adapter;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
@@ -12,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
 import com.srgtrujillo.quotes.R;
+import com.srgtrujillo.quotes.quote.detail.QuoteDetailActivity;
 import com.srgtrujillo.quotes.quote.model.Quote;
 
 import java.util.ArrayList;
@@ -19,10 +24,12 @@ import java.util.List;
 
 public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder> {
 
+    private Activity activity;
     private SortedList<Quote> quoteList;
 
-    public QuoteAdapter() {
-        quoteList = new SortedList<Quote>(Quote.class, new SortedListAdapterCallback<Quote>(this) {
+    public QuoteAdapter(Activity activity) {
+        this.activity = activity;
+        quoteList = new SortedList(Quote.class, new SortedListAdapterCallback<Quote>(this) {
             @Override
             public int compare(Quote o1, Quote o2) {
                 return o1.compareTo(o2);
@@ -48,9 +55,27 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
     }
 
     @Override
-    public void onBindViewHolder(QuoteViewHolder holder, int position) {
-        Quote quote = quoteList.get(position);
+    public void onBindViewHolder(final QuoteViewHolder holder, final int position) {
+        final Quote quote = quoteList.get(position);
         holder.render(quote);
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToDetailActivity(holder, quote);
+            }
+        });
+    }
+
+    private void moveToDetailActivity(QuoteViewHolder viewHolder, Quote quote) {
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, viewHolder.itemView, QuoteDetailActivity.AUTHOR_IMAGE);
+        Intent intent = new Intent(viewHolder.itemView.getContext(), QuoteDetailActivity.class);
+        intent.putExtra(QuoteDetailActivity.AUTHOR, quote.getAuthor());
+        intent.putExtra(QuoteDetailActivity.IMAGE_URL, quote.getImageUrl());
+        intent.putExtra(QuoteDetailActivity.QUOTE_TEXT, quote.getQuote());
+        intent.putExtra(QuoteDetailActivity.AUTHOR, quote.getAuthor());
+        intent.putExtra(QuoteDetailActivity.LIKES_COUNT, quote.getLikes().size());
+        ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 
     @Override
@@ -65,11 +90,9 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
 
     public List<Quote> getItems() {
         List<Quote> quotes = new ArrayList<>();
-
         for (int i = 0, size = quoteList.size(); i < size; i++) {
             quotes.add(quoteList.get(i));
         }
-
         return quotes;
     }
 
@@ -86,8 +109,7 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         @BindView(R.id.likes_count)
         TextView likeCountTextView;
 
-
-        QuoteViewHolder(View itemView) {
+        private QuoteViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -108,7 +130,7 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         private void renderLike(List<String> likes) {
             if (!likes.isEmpty()){
                 likeImage.setImageResource(R.drawable.ic_like_fill);
-                likeCountTextView.setText(likes.size()+"");
+                likeCountTextView.setText(likes.size() + "");
             }
         }
     }

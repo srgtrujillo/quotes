@@ -2,6 +2,7 @@ package com.srgtrujillo.quotes.quote.model;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Quote implements Comparable<Quote> {
@@ -44,7 +45,7 @@ public class Quote implements Comparable<Quote> {
     }
 
     public List<String> getLikes() {
-        return likes;
+        return new ArrayList(likes);
     }
 
     public long getTimestamp() {
