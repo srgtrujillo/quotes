@@ -1,6 +1,5 @@
 package com.srgtrujillo.quotes.quote.data;
 
-import android.util.Log;
 import com.google.gson.Gson;
 import com.srgtrujillo.quotes.quote.model.Quote;
 import okhttp3.OkHttpClient;
@@ -14,14 +13,12 @@ import java.util.concurrent.Callable;
 
 public class QuoteRepository {
 
-    private final String TAG = QuoteRepository.class.getSimpleName();
-
-    private OkHttpClient client;
     private Gson gson;
+    private OkHttpClient client;
 
     public QuoteRepository(Gson gson, OkHttpClient client) {
-        this.client = client;
         this.gson = gson;
+        this.client = client;
     }
 
     protected StringBuffer getQuotesFromUrl(String endPoint) throws Exception {
@@ -39,7 +36,6 @@ public class QuoteRepository {
                 StringBuffer response = getQuotesFromUrl(
                         "https://raw.githubusercontent.com/srgtrujillo/quotes/dev/api/quotes.json");
                 String json = response.toString();
-                Log.i(TAG, json);
                 return Arrays.asList(gson.fromJson(json, Quote[].class));
             }
         });

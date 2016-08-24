@@ -1,7 +1,8 @@
-package com.srgtrujillo.quotes.comments;
+package com.srgtrujillo.quotes.comment;
 
 import com.srgtrujillo.quotes.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Comment {
@@ -13,7 +14,12 @@ public class Comment {
     private long timestamp;
     private List<String> likes;
 
-    public Comment(String id, String comment, User user, String quoteId, long timestamp, List<String> likes) {
+    public Comment(String id,
+                   String comment,
+                   User user,
+                   String quoteId,
+                   long timestamp,
+                   List<String> likes) {
         this.id = id;
         this.comment = comment;
         this.user = user;
@@ -43,6 +49,6 @@ public class Comment {
     }
 
     public List<String> getLikes() {
-        return likes;
+        return new ArrayList<>(likes);
     }
 }
