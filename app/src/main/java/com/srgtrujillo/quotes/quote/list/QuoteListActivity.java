@@ -82,7 +82,7 @@ public class QuoteListActivity extends AppCompatActivity implements QuoteListPre
 
     @Override
     public void initUi() {
-        adapter = new QuoteAdapter(this);
+        adapter = new QuoteAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

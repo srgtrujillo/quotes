@@ -15,12 +15,10 @@ import butterknife.ButterKnife;
 
 public class QuoteDetailActivity extends AppCompatActivity {
 
-    public static final String AUTHOR_IMAGE = "author.image";
-
     public static final String AUTHOR = "author";
-    public static final String IMAGE_URL = "imageUrl";
-    public static final String QUOTE_TEXT = "quoteText";
-    public static final String LIKES_COUNT = "likesCount";
+    public static final String IMAGE_URL = "image_url";
+    public static final String QUOTE_TEXT = "quote_text";
+    public static final String LIKES_COUNT = "likes_count";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

@@ -45,7 +45,7 @@ public class Quote implements Comparable<Quote> {
     }
 
     public List<String> getLikes() {
-        return new ArrayList(likes);
+        return new ArrayList<>(likes);
     }
 
     public long getTimestamp() {

@@ -1,9 +1,6 @@
 package com.srgtrujillo.quotes.quote.list.adapter;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
@@ -24,11 +21,9 @@ import java.util.List;
 
 public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder> {
 
-    private Activity activity;
     private SortedList<Quote> quoteList;
 
-    public QuoteAdapter(Activity activity) {
-        this.activity = activity;
+    public QuoteAdapter() {
         quoteList = new SortedList(Quote.class, new SortedListAdapterCallback<Quote>(this) {
             @Override
             public int compare(Quote o1, Quote o2) {
@@ -66,16 +61,14 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         });
     }
 
-    private void moveToDetailActivity(QuoteViewHolder viewHolder, Quote quote) {
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                activity, viewHolder.itemView, QuoteDetailActivity.AUTHOR_IMAGE);
-        Intent intent = new Intent(viewHolder.itemView.getContext(), QuoteDetailActivity.class);
+    private void moveToDetailActivity(QuoteViewHolder holder, Quote quote) {
+        Intent intent = new Intent(holder.itemView.getContext(), QuoteDetailActivity.class);
         intent.putExtra(QuoteDetailActivity.AUTHOR, quote.getAuthor());
         intent.putExtra(QuoteDetailActivity.IMAGE_URL, quote.getImageUrl());
         intent.putExtra(QuoteDetailActivity.QUOTE_TEXT, quote.getQuote());
         intent.putExtra(QuoteDetailActivity.AUTHOR, quote.getAuthor());
         intent.putExtra(QuoteDetailActivity.LIKES_COUNT, quote.getLikes().size());
-        ActivityCompat.startActivity(activity, intent, options.toBundle());
+        holder.itemView.getContext().startActivity(intent);
     }
 
     @Override
@@ -109,7 +102,7 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         @BindView(R.id.likes_count)
         TextView likeCountTextView;
 
-        private QuoteViewHolder(View itemView) {
+        public QuoteViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
