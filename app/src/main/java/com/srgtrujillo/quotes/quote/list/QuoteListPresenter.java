@@ -14,7 +14,6 @@ import java.util.List;
 public class QuoteListPresenter implements MVP.Presenter<QuoteListPresenter.View> {
 
     interface View extends MVP.View {
-
         void show(List<Quote> quoteList);
         void showEmptyCase();
         void showNetworkError();
@@ -23,12 +22,10 @@ public class QuoteListPresenter implements MVP.Presenter<QuoteListPresenter.View
         void showProgressBar();
     }
 
-
     private final String TAG = QuoteListPresenter.class.getSimpleName();
 
     private GetQuotes useCase;
     private View view;
-
     private Subscription quotesSubscription;
 
     public QuoteListPresenter(GetQuotes useCase) {
@@ -68,23 +65,21 @@ public class QuoteListPresenter implements MVP.Presenter<QuoteListPresenter.View
 
     private void onQuotesReceived(List<Quote> quotes) {
         Log.i(TAG, "onQuotesReceived: " + quotes.toString());
-
         if (quotes.isEmpty()) {
             view.showEmptyCase();
         } else {
             view.show(quotes);
         }
-
         view.hideProgressBar();
     }
 
     private void onError(Throwable error) {
+        Log.e(TAG, "onError: ", error);
         if (error instanceof UnknownHostException) {
             view.showNetworkError();
         } else {
             view.showError();
         }
         view.hideProgressBar();
-        Log.e(TAG, "onError: ", error);
     }
 }
