@@ -1,6 +1,5 @@
 package com.srgtrujillo.quotes.quote.list.adapter;
 
-import android.content.Intent;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
@@ -13,8 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
 import com.srgtrujillo.quotes.R;
-import com.srgtrujillo.quotes.quote.detail.QuoteDetailActivity;
 import com.srgtrujillo.quotes.quote.model.Quote;
+import com.srgtrujillo.quotes.quote.navigation.QuoteDetailActivityNavigator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,13 +61,7 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
     }
 
     private void moveToDetailActivity(QuoteViewHolder holder, Quote quote) {
-        Intent intent = new Intent(holder.itemView.getContext(), QuoteDetailActivity.class);
-        intent.putExtra(QuoteDetailActivity.AUTHOR, quote.getAuthor());
-        intent.putExtra(QuoteDetailActivity.IMAGE_URL, quote.getImageUrl());
-        intent.putExtra(QuoteDetailActivity.QUOTE_TEXT, quote.getQuote());
-        intent.putExtra(QuoteDetailActivity.AUTHOR, quote.getAuthor());
-        intent.putExtra(QuoteDetailActivity.LIKES_COUNT, quote.getLikes().size());
-        holder.itemView.getContext().startActivity(intent);
+        new QuoteDetailActivityNavigator(holder.itemView.getContext(), quote).navigate();
     }
 
     @Override
